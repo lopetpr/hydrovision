@@ -1,11 +1,132 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+
+const cartas = [
+  {
+    contenido: `
+      Hasta
+      <span class="text-[28px] font-extrabold text-white">40%</span>
+      <span class="block">menos costo que</span>
+      <span>proyectos</span>
+      <span class="block">tradicionales</span>
+    `,
+    botonTexto: "Diagnóstico",
+  },
+  {
+    contenido: `
+      Diagnóstico con
+      <span class="block text-[28px] font-extrabold text-white">drones</span>
+      <span class="block">y análisis hídrico</span>
+    `,
+    botonTexto: "Ver servicios",
+  },
+  {
+    contenido: `
+      Adaptado a
+      <span class="block text-[28px] font-extrabold text-white">familias,</span>
+      <span class="block">comunidades y</span>
+      <span>municipalidades</span>
+    `,
+    botonTexto: "Contáctenos",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Inicio">
+  <main class="w-full">
+    <div class="relative">
+      <img
+        src="hero.jpg"
+        alt=""
+        class="absolute inset-0 h-[570px] w-full object-cover z-0"
+      />
+      <div class="absolute inset-0 bg-black/60 z-10"></div>
+
+      <div
+        class="relative z-20 text-white flex flex-col h-[570px] gap-4 pt-3 w-7xl justify-start items-start mx-auto"
+      >
+        <LottieAnimation
+          src="/hero-landyng-pro.json"
+          autoplay="visible"
+          loop
+          class="w-7xl h-[570px]"
+        />
+
+        <!-- <h1 class="text-white font-bold leading-tight text-[48px]">
+          <span class="relative inline-block">
+            Agua segura para
+            <span class="absolute left-0 w-full h-[3px]"></span>
+          </span>
+          <br />
+          <span class="relative inline-block">
+            comunidades en zonas
+            <span class="absolute left-0 w-full h-[3px]"></span>
+          </span>
+          <br />
+          <span class="relative inline-block">
+            rurales
+            <span class="absolute left-0 w-full h-[3px]"></span>
+          </span>
+        </h1> -->
+
+        <div class="w-7xl justify-center mt-12 mx-auto flex flex-row">
+          {
+            cartas.map((carta) => (
+              <div class="group relative">
+                <div class="group-hover:bg-[#1078A5] border-l-3 border-t-3 bg-[#888585] w-[260px] h-[296px] justify-center flex items-center font-bold text-[18px] pb-12">
+                  <p set:html={carta.contenido} />
+
+                  <button class="absolute bottom-4 opacity-0 group-hover:opacity-100 duration-500 border-2 border-[#615FFF] bg-[#F0F0F8] text-[#615FFF] px-5 py-2 rounded-2xl shadow justify-center mb-4 transition-all translate-y-4 group-hover:translate-y-0 cursor-pointer hover:bg-[#615FFF] hover:text-white">
+                    {carta.botonTexto}
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full bg-[#14638A] h-[257px] mt-80 mb-[100px]">
+      <div
+        class="w-7xl flex flex-col justify-center items-center h-full mx-auto py-4"
+      >
+        <p
+          class="justify-center text-[32px] font-bold text-white leading-tight text-center"
+          id="tipeador"
+        >
+        </p>
+        <p
+          class="justify-center text-[18px] font-extralight text-white leading-tight text-center mt-2"
+        >
+          Más del <span class="font-bold text-[22px]">75%</span> depende de lluvias
+          estacionales y manantes no aprovechados,<span class="block">
+            generando enfermedades, pérdidas ganaderas y baja productividad.</span
+          >
+        </p>
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<script>
+  import Typed from "typed.js";
+
+  new Typed("#tipeador", {
+    strings: [
+      "En muchas comunidades altoandinas,",
+      "las familias no cuentan con agua ",
+      "segura durante todo el año.",
+    ],
+    typeSpeed: 50,
+    backSpeed: 25,
+    backDelay: 2000,
+    loop: true,
+    showCursor: false,
+  });
+</script>
+<script type="module">
+  import "@lottiefiles/lottie-player";
+</script>
