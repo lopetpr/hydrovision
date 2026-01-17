@@ -1,0 +1,44 @@
+---
+const links = [
+  { href: "/", text: "Inicio" },
+  { href: "/servicios", text: "Servicios" },
+  { href: "/productos", text: "Productos" },
+  { href: "/nosotros", text: "Nosotros" },
+  { href: "/contactanos", text: "Contáctanos" },
+];
+
+const currentPath = Astro.url.pathname;
+
+// Función para normalizar rutas
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<nav class="w-full bg-[#109BCA] border-b border-gray-100">
+  <div class="max-w-7xl mx-auto">
+    <div class="py-4">
+      <div class="flex flex-row justify-center gap-6">
+        {
+          links.map(({ href, text }) => (
+            <div>
+              <a
+                href={href}
+                data-astro-prefetch="hover"
+                class="text-white hover:text-gray-900 px-3 py-2 text-sm ansition-colors font-light text-[14px]"
+              >
+                {text}
+              </a>
+              {currentPath == href && (
+                <div class="border-b-2 border-[#CEFBFF]" />
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</nav>
