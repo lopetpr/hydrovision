@@ -1,0 +1,300 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contáctanos - HYDROVISION">
+  <main class="w-full bg-white">
+    <!-- PANTALLA 10: Hero Contacto -->
+    <section
+      class="py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+          <p
+            class="text-cyan-400 font-medium mb-6 tracking-wide uppercase text-sm"
+          >
+            Contacto
+          </p>
+
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8"
+          >
+            Llevemos agua segura a más comunidades
+          </h1>
+
+          <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            Buscamos proyectos, alianzas y financiamiento para ampliar el
+            impacto de HYDROVISION.
+          </p>
+
+          <!-- Botones principales -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#agendar"
+              class="inline-flex items-center justify-center gap-3 bg-cyan-500 text-white font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 transition-colors"
+            >
+              <span>📅</span>
+              <span>Agendar reunión</span>
+            </a>
+            <a
+              href="#formulario"
+              class="inline-flex items-center justify-center gap-3 bg-emerald-500 text-white font-semibold px-8 py-4 rounded-full hover:bg-emerald-400 transition-colors"
+            >
+              <span>🔍</span>
+              <span>Solicitar diagnóstico</span>
+            </a>
+            <a
+              href="#aliado"
+              class="inline-flex items-center justify-center gap-3 bg-white text-gray-900 font-semibold px-8 py-4 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <span>🤝</span>
+              <span>Ser aliado estratégico</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario de contacto -->
+    <section id="formulario" class="py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <!-- Info lateral -->
+          <div>
+            <span
+              class="text-8xl lg:text-9xl font-black text-gray-100 leading-none select-none"
+              >01</span
+            >
+
+            <div class="mt-6">
+              <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                Escríbenos
+              </h2>
+              <p class="text-lg text-gray-500 mb-10">
+                Cuéntanos sobre tu comunidad, proyecto o interés en trabajar
+                juntos. Responderemos a la brevedad.
+              </p>
+
+              <!-- Info de contacto -->
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-cyan-50 flex items-center justify-center flex-shrink-0"
+                  >
+                    <span class="text-xl">📍</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">Ubicación</p>
+                    <p class="text-gray-500">Puno, Perú</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-cyan-50 flex items-center justify-center flex-shrink-0"
+                  >
+                    <span class="text-xl">📧</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">Email</p>
+                    <p class="text-gray-500">contacto@hydrovision.pe</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-full bg-cyan-50 flex items-center justify-center flex-shrink-0"
+                  >
+                    <span class="text-xl">📱</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-gray-900">WhatsApp</p>
+                    <p class="text-gray-500">+51 999 999 999</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div class="bg-gray-50 rounded-3xl p-8 lg:p-12">
+            <form class="space-y-6">
+              <!-- Nombre -->
+              <div>
+                <label
+                  for="nombre"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  Nombre completo
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white"
+                  placeholder="Tu nombre"
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white"
+                  placeholder="tu@email.com"
+                />
+              </div>
+
+              <!-- Teléfono -->
+              <div>
+                <label
+                  for="telefono"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  Teléfono / WhatsApp
+                </label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white"
+                  placeholder="+51 999 999 999"
+                />
+              </div>
+
+              <!-- Tipo de consulta -->
+              <div>
+                <label
+                  for="tipo"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  ¿Qué te interesa?
+                </label>
+                <select
+                  id="tipo"
+                  name="tipo"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white appearance-none"
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="diagnostico"
+                    >Solicitar diagnóstico hídrico</option
+                  >
+                  <option value="kit-consumo">Cotizar Kit Consumo Humano</option
+                  >
+                  <option value="kit-geotanque">Cotizar Kit Geotanque</option>
+                  <option value="alianza">Ser aliado estratégico</option>
+                  <option value="proyecto">Proponer un proyecto</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+
+              <!-- Comunidad/Organización -->
+              <div>
+                <label
+                  for="organizacion"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  Comunidad u organización
+                </label>
+                <input
+                  type="text"
+                  id="organizacion"
+                  name="organizacion"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white"
+                  placeholder="Nombre de tu comunidad u organización"
+                />
+              </div>
+
+              <!-- Mensaje -->
+              <div>
+                <label
+                  for="mensaje"
+                  class="block text-sm font-bold text-gray-900 mb-2"
+                >
+                  Mensaje
+                </label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  rows="4"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 outline-none transition-all bg-white resize-none"
+                  placeholder="Cuéntanos sobre tu proyecto o necesidad..."
+                ></textarea>
+              </div>
+
+              <!-- Botón enviar -->
+              <button
+                type="submit"
+                class="w-full bg-gray-900 text-white font-semibold px-8 py-4 rounded-full hover:bg-gray-800 transition-colors flex items-center justify-center gap-3"
+              >
+                <span>Enviar mensaje</span>
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Aliados -->
+    <section id="aliado" class="py-24 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-6xl mb-6 block">🤝</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          ¿Quieres ser aliado estratégico?
+        </h2>
+        <p class="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
+          ONGs, empresas, municipalidades y organizaciones pueden sumarse para
+          llevar agua segura a más comunidades altoandinas.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+          <div class="bg-white p-6 rounded-2xl border border-gray-100">
+            <span class="text-3xl mb-4 block">🏛️</span>
+            <h3 class="font-bold text-gray-900 mb-2">Municipalidades</h3>
+            <p class="text-gray-500 text-sm">
+              Proyectos de agua para comunidades rurales
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-100">
+            <span class="text-3xl mb-4 block">🌍</span>
+            <h3 class="font-bold text-gray-900 mb-2">ONGs</h3>
+            <p class="text-gray-500 text-sm">
+              Alianzas para desarrollo rural sostenible
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-100">
+            <span class="text-3xl mb-4 block">🏢</span>
+            <h3 class="font-bold text-gray-900 mb-2">Empresas</h3>
+            <p class="text-gray-500 text-sm">
+              Responsabilidad social con impacto real
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
