@@ -1,132 +1,343 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
 import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 
-const cartas = [
+import AnimatedStats from "@/components/ui/AnimatedStats";
+
+import { StackedCard } from "@/components/ui/StackedCard";
+
+import ParallaxCards from "@/components/ui/parallaxcards";
+
+import ServiceCards from "@/components/ui/ServiceCards";
+
+import TestimonialCards from "@/components/ui/TestimonialCards";
+
+const servicios = [
   {
-    contenido: `
-      Hasta
-      <span class="text-[28px] font-extrabold text-white">40%</span>
-      <span class="block">menos costo que</span>
-      <span>proyectos</span>
-      <span class="block">tradicionales</span>
-    `,
-    botonTexto: "Diagnóstico",
+    titulo: "Estudios Hidrológicos",
+    descripcion:
+      "Análisis integral de recursos hídricos con tecnología de punta",
+    icon: "📊",
   },
   {
-    contenido: `
-      Diagnóstico con
-      <span class="block text-[28px] font-extrabold text-white">drones</span>
-      <span class="block">y análisis hídrico</span>
-    `,
-    botonTexto: "Ver servicios",
+    titulo: "Sistemas de Riego",
+    descripcion: "Diseño e implementación de sistemas eficientes y sostenibles",
+    icon: "💦",
   },
   {
-    contenido: `
-      Adaptado a
-      <span class="block text-[28px] font-extrabold text-white">familias,</span>
-      <span class="block">comunidades y</span>
-      <span>municipalidades</span>
-    `,
-    botonTexto: "Contáctenos",
+    titulo: "Monitoreo con Drones",
+    descripcion: "Inspección aérea y diagnóstico preciso del territorio",
+    icon: "🛸",
   },
+  {
+    titulo: "Capacitación",
+    descripcion: "Formación técnica para gestión sostenible del agua",
+    icon: "📚",
+  },
+];
+
+const beneficios = [
+  {
+    numero: "75%",
+    texto: "de familias sin acceso a agua segura",
+  },
+  {
+    numero: "40%",
+    texto: "de ahorro en costos de implementación",
+  },
+  {
+    numero: "200+",
+    texto: "comunidades potenciales",
+  },
+  {
+    numero: "24/7",
+    texto: "soporte técnico continuo",
+  },
+];
+
+const testimonios = [
+  {
+    nombre: "María González",
+    cargo: "Presidenta Comunal",
+    testimonio:
+      "Gracias al sistema implementado, nuestra comunidad ahora cuenta con agua durante todo el año. La inversión valió la pena.",
+    comunidad: "Comunidad Alto Perú",
+  },
+  {
+    nombre: "Juan Mamani",
+    cargo: "Agricultor",
+    testimonio:
+      "El sistema de riego por goteo aumentó nuestra producción en un 60%. Ahora podemos cultivar todo el año.",
+    comunidad: "Sector Las Lomas",
+  },
+  {
+    nombre: "Pedro Quispe",
+    cargo: "Alcalde",
+    testimonio:
+      "El diagnóstico con drones nos permitió identificar fuentes de agua que desconocíamos. Excelente trabajo profesional.",
+    comunidad: "Municipio de Tapara",
+  },
+];
+
+const stats = [
+  { value: 75, suffix: "%", label: "de familias sin acceso a agua segura" },
+  { value: 40, suffix: "%", label: "de ahorro en costos de implementación" },
+  { value: 200, suffix: "+", label: "comunidades potenciales" },
+  { value: 24, suffix: "/7", label: "soporte técnico continuo" },
 ];
 ---
 
 <Layout title="Inicio">
   <main class="w-full">
-    <div class="relative">
-      <img
-        src="hero.jpg"
-        alt=""
-        class="absolute inset-0 h-[570px] w-full object-cover z-0"
-      />
-      <div class="absolute inset-0 bg-black/60 z-10"></div>
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+      <div class="absolute inset-0 z-10"></div>
 
       <div
-        class="relative z-20 text-white flex flex-col h-[570px] gap-4 pt-3 w-7xl justify-start items-start mx-auto"
+        class="relative z-20 text-white flex flex-col min-h-[650px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <LottieAnimation
-          src="/hero-landyng-pro.json"
-          autoplay="visible"
-          loop
-          class="w-7xl h-[570px]"
-        />
+        <!-- Contenido del Hero -->
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-8 py-6 flex-1 mb-20"
+        >
+          <!-- Lado izquierdo - Texto -->
+          <div class="flex-1 space-y-2 text-center lg:text-left">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl text-gray-600 font-bold leading-tight"
+            >
+              Agua Segura para
+              <span class="text-gray-600 block">Comunidades</span>
+              <span class="text-cyan-400 block">Altoandinas</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl">
+              Soluciones hídricas sostenibles con tecnología de punta.
+              Transformamos el acceso al agua en tu comunidad.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8"
+            >
+              <!-- Botón principal -->
+              <a
+                href="/contactanos"
+                class="bg-gradient-to-r from-cyan-500 to-blue-600
+           hover:from-cyan-600 hover:to-blue-700
+           text-white font-semibold
+           px-8 py-3 rounded-lg
+           shadow-lg shadow-blue-500/30
+           transition-all duration-300 hover:scale-105"
+              >
+                Solicitar Diagnóstico
+              </a>
 
-        <!-- <h1 class="text-white font-bold leading-tight text-[48px]">
-          <span class="relative inline-block">
-            Agua segura para
-            <span class="absolute left-0 w-full h-[3px]"></span>
-          </span>
-          <br />
-          <span class="relative inline-block">
-            comunidades en zonas
-            <span class="absolute left-0 w-full h-[3px]"></span>
-          </span>
-          <br />
-          <span class="relative inline-block">
-            rurales
-            <span class="absolute left-0 w-full h-[3px]"></span>
-          </span>
-        </h1> -->
+              <!-- Botón secundario -->
+            </div>
+          </div>
 
-        <div class="w-7xl justify-center mt-12 mx-auto flex flex-row">
-          {
-            cartas.map((carta) => (
-              <div class="group relative">
-                <div class="group-hover:bg-[#1078A5] border-l-3 border-t-3 bg-[#888585] w-[260px] h-[296px] justify-center flex items-center font-bold text-[18px] pb-12">
-                  <p set:html={carta.contenido} />
-
-                  <button class="absolute bottom-4 opacity-0 group-hover:opacity-100 duration-500 border-2 border-[#615FFF] bg-[#F0F0F8] text-[#615FFF] px-5 py-2 rounded-2xl shadow justify-center mb-4 transition-all translate-y-4 group-hover:translate-y-0 cursor-pointer hover:bg-[#615FFF] hover:text-white">
-                    {carta.botonTexto}
-                  </button>
-                </div>
-              </div>
-            ))
-          }
+          <!-- Lado derecho - Animación -->
+          <div class="flex-1 max-w-xl">
+            <LottieAnimation
+              src="/lottie-hero-hydrovision.json"
+              autoplay="visible"
+              loop
+              class="w-full h-auto"
+            />
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="w-full bg-[#14638A] h-[257px] mt-80 mb-[100px]">
-      <div
-        class="w-7xl flex flex-col justify-center items-center h-full mx-auto py-4"
-      >
-        <p
-          class="justify-center text-[32px] font-bold text-white leading-tight text-center"
-          id="tipeador"
-        >
-        </p>
-        <p
-          class="justify-center text-[18px] font-extralight text-white leading-tight text-center mt-2"
-        >
-          Más del <span class="font-bold text-[22px]">75%</span> depende de lluvias
-          estacionales y manantes no aprovechados,<span class="block">
-            generando enfermedades, pérdidas ganaderas y baja productividad.</span
+    <!-- Sección de Problema/Estadísticas -->
+    <div
+      class="w-full bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 mt-20"
+    >
+      <div class="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-white py-20
+         h-[7rem] md:h-[8.5rem]
+         flex items-center justify-center text-center overflow-hidden"
           >
-        </p>
+            <span class="block leading-tight whitespace-pre-line"
+              >Muchas comunidades no cuentan con agua segura durante todo el año</span
+            >
+          </h2>
+          <p
+            class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
+          >
+            Más de <span class="font-bold text-2xl text-cyan-300"
+              >350 mil familias</span
+            > dependen de lluvias estacionales y manantes no aprovechados, generando
+            enfermedades, pérdidas ganaderas y baja productividad.
+          </p>
+        </div>
+
+        <!-- Estadísticas con animación -->
+        <AnimatedStats stats={stats} client:visible />
       </div>
     </div>
+
+    <!-- Sección de Servicios -->
+    <div class="w-full py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- TEXTO MEJORADO -->
+        <div class="text-center my-20 relative">
+          <!-- Decoración superior -->
+
+          <h2
+            class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+          >
+            Sembrar agua
+            <span class="relative inline-block">
+              <span class="relative z-10">donde ya existe</span>
+              <svg
+                class="absolute -bottom-2 left-0 w-full"
+                height="8"
+                viewBox="0 0 200 8"
+                fill="none"
+              >
+                <path
+                  d="M1 5.5Q50 1 100 5.5T199 5.5"
+                  stroke="url(#gradient)"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="animate-draw"></path>
+                <defs>
+                  <linearGradient
+                    id="gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="100%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stop-color="#06b6d4"></stop>
+                    <stop offset="100%" stop-color="#2563eb"></stop>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </span>
+          </h2>
+
+          <p
+            class="text-lg md:text-xl text-gray-600 mt-8 mx-auto max-w-3xl leading-relaxed"
+          >
+            En <span
+              class="font-bold text-gray-900 bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent"
+              >HYDROVISION</span
+            > ofrecemos una solución integral que combina <span
+              class="font-semibold text-gray-800">tecnología moderna</span
+            > + <span class="font-semibold text-gray-800"
+              >conocimiento rural</span
+            >
+            <span class="block mt-2 text-gray-500">
+              para asegurar agua sostenible a bajo costo
+            </span>
+          </p>
+
+          <!-- Indicador decorativo -->
+          <div class="mt-10 flex justify-center">
+            <div class="flex items-center gap-2 text-cyan-600">
+              <svg
+                class="w-5 h-5 animate-bounce"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+              <span class="text-sm font-medium">Conoce nuestros servicios</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <ServiceCards client:visible />
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center mt-12">
+          <a
+            href="/servicios"
+            class="inline-block bg-gradient-to-r from-cyan-500 to-blue-600
+               hover:from-cyan-600 hover:to-blue-700 text-white font-semibold
+               px-8 py-3 rounded-lg shadow-lg transform transition hover:scale-105"
+          >
+            Ver más
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Testimonios -->
+    <div class="w-full py-24 bg-gradient-to-b from-white to-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header mejorado -->
+        <div class="text-center mb-16">
+          <div class="flex items-center justify-center gap-3 mb-6">
+            <span
+              class="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500"
+            ></span>
+            <span
+              class="text-cyan-600 font-medium tracking-widest text-sm uppercase"
+              >Testimonios</span
+            >
+            <span
+              class="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500"
+            ></span>
+          </div>
+
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Lo Que Dicen
+            <span class="relative inline-block">
+              <span class="relative z-10">Nuestros Clientes</span>
+              <span
+                class="absolute bottom-2 left-0 w-full h-3 bg-cyan-200/50 -z-0"
+              ></span>
+            </span>
+          </h2>
+          <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">
+            Historias reales de comunidades que han transformado su acceso al
+            agua
+          </p>
+        </div>
+
+        <TestimonialCards testimonios={testimonios} client:visible />
+      </div>
+    </div>
+
+    <!-- Sección CTA Final -->
+    <div class="w-full bg-gradient-to-r from-cyan-600 to-blue-700 py-16">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          ¿Listo para Transformar tu Comunidad?
+        </h2>
+        <p class="text-xl text-gray-100 mb-8">
+          Solicita un diagnóstico gratuito y descubre cómo podemos ayudarte
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contactanos"
+            class="bg-white hover:bg-gray-100 text-cyan-700 font-bold px-8 py-4 rounded-lg shadow-lg transform transition hover:scale-105"
+          >
+            Contactar Ahora
+          </a>
+          <a
+            href="/nosotros"
+            class="bg-transparent hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-lg border-2 border-white transition"
+          >
+            Conocer Más
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
   </main>
 </Layout>
 
-<script>
-  import Typed from "typed.js";
-
-  new Typed("#tipeador", {
-    strings: [
-      "En muchas comunidades altoandinas,",
-      "las familias no cuentan con agua ",
-      "segura durante todo el año.",
-    ],
-    typeSpeed: 50,
-    backSpeed: 25,
-    backDelay: 2000,
-    loop: true,
-    showCursor: false,
-  });
-</script>
 <script type="module">
   import "@lottiefiles/lottie-player";
 </script>
