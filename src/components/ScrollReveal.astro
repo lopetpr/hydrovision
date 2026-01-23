@@ -1,0 +1,181 @@
+---
+interface Props {
+  animation?: "fade-up" | "fade-left" | "fade-right" | "scale";
+  delay?: number;
+  intensity?: "low" | "medium" | "high";
+  repeat?: boolean;
+  class?: string;
+}
+
+const {
+  animation = "fade-up",
+  delay = 0,
+  intensity = "medium",
+  repeat = false,
+  class: className = "",
+} = Astro.props;
+
+const animationClasses = {
+  "fade-up": "reveal",
+  "fade-left": "reveal-left",
+  "fade-right": "reveal-right",
+  scale: "reveal-scale",
+};
+
+const intensityClasses = {
+  low: "intensity-low",
+  medium: "intensity-medium",
+  high: "intensity-high",
+};
+---
+
+<div
+  class={`${animationClasses[animation]} ${intensityClasses[intensity]} ${className}`}
+  style={delay ? `transition-delay: ${delay}ms` : ""}
+  data-repeat={repeat ? "true" : "false"}
+>
+  <slot />
+</div>
+
+<style is:global>
+  /* ============ INTENSIDAD BAJA ============ */
+  .reveal.intensity-low {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+  .reveal-left.intensity-low {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+  .reveal-right.intensity-low {
+    opacity: 0;
+    transform: translateX(30px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+  .reveal-scale.intensity-low {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+
+  /* ============ INTENSIDAD MEDIA ============ */
+  .reveal.intensity-medium {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+  .reveal-left.intensity-medium {
+    opacity: 0;
+    transform: translateX(-70px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+  .reveal-right.intensity-medium {
+    opacity: 0;
+    transform: translateX(70px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+  .reveal-scale.intensity-medium {
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+
+  /* ============ INTENSIDAD ALTA ============ */
+  .reveal.intensity-high {
+    opacity: 0;
+    transform: translateY(100px);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-left.intensity-high {
+    opacity: 0;
+    transform: translateX(-120px);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-right.intensity-high {
+    opacity: 0;
+    transform: translateX(120px);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-scale.intensity-high {
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ============ ESTADO ACTIVO ============ */
+  .reveal.active,
+  .reveal-left.active,
+  .reveal-right.active,
+  .reveal-scale.active {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      scrollRevealInitialized?: boolean;
+    }
+  }
+  if (!window.scrollRevealInitialized) {
+    window.scrollRevealInitialized = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const shouldRepeat =
+            entry.target.getAttribute("data-repeat") === "true";
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          } else if (shouldRepeat) {
+            entry.target.classList.remove("active");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px",
+      },
+    );
+    const observeElements = () => {
+      document
+        .querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale")
+        .forEach((el) => {
+          if (!el.classList.contains("observed")) {
+            el.classList.add("observed");
+            observer.observe(el);
+          }
+        });
+    };
+    observeElements();
+    document.addEventListener("astro:page-load", observeElements);
+  }
+</script>

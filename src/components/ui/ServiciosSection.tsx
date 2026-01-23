@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
+import AnimatedStats from "./AnimatedStats";
+
 interface Service {
   id: number;
   number: string;
@@ -28,7 +30,7 @@ const services: Service[] = [
       "Modelos 3D de microreservorios",
     ],
     price: "Desde S/. 420.00",
-    image: "/servicios/mapeo-dron.jpg",
+    image: "/servicios/reconocimiento-dron.jpg",
   },
   {
     id: 2,
@@ -43,7 +45,7 @@ const services: Service[] = [
       "Diseño por gravedad",
     ],
     price: "Desde S/. 280.00",
-    image: "/servicios/captacion-agua.jpg",
+    image: "/servicios/captacion.jpg",
   },
   {
     id: 3,
@@ -56,8 +58,8 @@ const services: Service[] = [
       "Tanques de polietileno",
       "Redes de distribución para personas y ganado",
     ],
-    price: "Cotización personalizada",
-    image: "/servicios/almacenamiento.jpg",
+    price: "Bajo cotización",
+    image: "/servicios/polietileno.jpg",
   },
 ];
 
@@ -77,7 +79,7 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
       className="group"
     >
       <div
-        className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center py-16 lg:py-24 ${
+        className={`grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center py-10 sm:py-12 lg:py-24 ${
           isReversed ? "" : ""
         }`}
       >
@@ -91,9 +93,9 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-6"
+            className="mb-4 sm:mb-6"
           >
-            <span className="text-8xl lg:text-9xl font-black text-gray-100 select-none leading-none">
+            <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#02B6D4] select-none leading-none">
               {service.number}
             </span>
           </motion.div>
@@ -105,14 +107,15 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl">{service.emoji}</span>
-              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400">
                 {service.title}
               </h3>
             </div>
 
-            <p className="text-lg text-gray-500 mb-8">{service.subtitle}</p>
+            <p className="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8">
+              {service.subtitle}
+            </p>
           </motion.div>
 
           {/* Features como lista simple */}
@@ -132,7 +135,7 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
                 transition={{ delay: 0.3 + idx * 0.05 }}
                 className="flex items-start gap-3 text-gray-600"
               >
-                <ChevronRight className="w-5 h-5 text-cyan-500 flex-shrink-0 mt-0.5" />
+                <ChevronRight className="w-5 h-5 text-cyan-700 flex-shrink-0 mt-0.5" />
                 <span>{feature}</span>
               </motion.li>
             ))}
@@ -148,7 +151,7 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
           >
             <div>
               <p className="text-sm text-gray-400 mb-1">Inversión</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-2xl font-bold text-indigo-500">
                 {service.price}
               </p>
             </div>
@@ -156,7 +159,7 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
             <motion.a
               href="/contactanos"
               whileHover={{ x: 5 }}
-              className="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors group/link"
+              className="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors group/link mt-6"
             >
               <span>Solicitar cotización</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -196,19 +199,6 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </>
             )}
-
-            {/* Badge de precio flotante */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
-            >
-              <span className="text-sm font-bold text-gray-900">
-                💰 {service.price}
-              </span>
-            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -237,15 +227,18 @@ export default function ServiciosSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="py-20 lg:py-32 border-b border-gray-100"
+          className="py-12 sm:py-16 lg:py-32 border-b border-gray-100"
         >
           <div className="max-w-3xl">
-            <p className="text-cyan-600 font-medium mb-4 tracking-wide uppercase text-sm">
-              Lo que hacemos
-            </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <div className="mb-4 sm:mb-6 max-w-40">
+              <p className="text-white font-medium mb-4 tracking-wide uppercase text-xs sm:text-sm bg-[#000000] p-2 rounded-2xl text-center w-full">
+                Lo que hacemos
+              </p>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-400 leading-tight">
               Soluciones integrales para el{" "}
-              <span className="text-gray-400">acceso al agua</span>
+              <span className="text-indigo-500">acceso al agua</span>
             </h2>
           </div>
         </motion.div>
@@ -257,38 +250,6 @@ export default function ServiciosSection() {
           ))}
         </div>
       </div>
-
-      {/* Footer section - Trust indicators */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="bg-gray-50 mt-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "100+", label: "Proyectos completados" },
-              { value: "< 7", label: "Días de instalación" },
-              { value: "40%", label: "Ahorro promedio" },
-              { value: "24/7", label: "Soporte técnico" },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <p className="text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-gray-500 text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
     </section>
   );
 }
