@@ -45,17 +45,17 @@ const stats = [
 ---
 
 <Layout title="Inicio">
-  <main class="w-full">
+  <main class="w-full overflow-x-hidden">
     <!-- Hero Section -->
     <div class="relative overflow-hidden">
       <div class="absolute inset-0 z-10"></div>
 
       <div
-        class="relative z-20 text-white flex flex-col min-h-[650px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        class="relative z-20 text-white flex flex-col min-h-[400px] sm:min-h-[500px] lg:min-h-[650px] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <!-- Contenido del Hero -->
         <div
-          class="flex flex-col lg:flex-row items-center justify-between gap-8 py-6 flex-1 mb-20"
+          class="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 py-6 flex-1 mb-8 sm:mb-12 lg:mb-20"
         >
           <!-- Lado izquierdo - Texto -->
           <ScrollReveal
@@ -97,8 +97,8 @@ const stats = [
             </div>
           </ScrollReveal>
 
-          <!-- Lado derecho - Animación -->
-          <div class="flex-1 max-w-xl">
+          <!-- Lado derecho - Animación (oculto en móvil pequeño) -->
+          <div class="hidden sm:block flex-1 max-w-xl">
             <LottieAnimation
               src="/lottie-hero-hydrovision.json"
               autoplay="visible"
@@ -112,7 +112,7 @@ const stats = [
 
     <!-- Sección de Problema/Estadísticas -->
     <div
-      class="w-full bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 mt-20"
+      class="w-full bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 mt-8 sm:mt-12 lg:mt-20"
     >
       <!-- //para la animacion de revelado es esto reveal opacity-0 translate-y-10
       transition-all duration-700 ease-out -->
