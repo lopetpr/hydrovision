@@ -1,0 +1,19 @@
+<svg width="600" height="600" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="dron">
+    <path d="M100 20L115 35L100 50L85 35L100 20Z" fill="#94A3B1"/>
+    <rect x="96" y="31" width="8" height="8" transform="rotate(45 96 31)" fill="white"/>
+    <path d="M85 35H65M65 35C65 35 60 35 60 30M115 35H135M135 35C135 35 140 35 140 30" stroke="#94A3B1" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="60" cy="28" rx="10" ry="3" fill="#94A3B1"/>
+    <ellipse cx="140" cy="28" rx="10" ry="3" fill="#94A3B1"/>
+  </g>
+
+  <g id="montana">
+    <path d="M45 115L100 55L155 115H45Z" fill="#94A3B1"/>
+    <path d="M100 55L115 115M100 75L85 90L95 100L80 110" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g id="agua">
+    <path d="M40 120C40 120 70 105 100 120C130 135 160 120 160 120C160 153 133 180 100 180C67 180 40 153 40 120Z" fill="#29ABC4"/>
+    <path d="M45 135C70 125 85 145 115 135M100 155C125 145 140 165 155 155" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

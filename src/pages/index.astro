@@ -4,54 +4,13 @@ import LottieAnimation from "astro-integration-lottie/Lottie.astro";
 
 import AnimatedStats from "@/components/ui/AnimatedStats";
 
-import { StackedCard } from "@/components/ui/StackedCard";
-
 import ServiceCards from "@/components/ui/ServiceCards";
 
 import TestimonialCards from "@/components/ui/TestimonialCards";
 
-const servicios = [
-  {
-    titulo: "Estudios Hidrológicos",
-    descripcion:
-      "Análisis integral de recursos hídricos con tecnología de punta",
-    icon: "📊",
-  },
-  {
-    titulo: "Sistemas de Riego",
-    descripcion: "Diseño e implementación de sistemas eficientes y sostenibles",
-    icon: "💦",
-  },
-  {
-    titulo: "Monitoreo con Drones",
-    descripcion: "Inspección aérea y diagnóstico preciso del territorio",
-    icon: "🛸",
-  },
-  {
-    titulo: "Capacitación",
-    descripcion: "Formación técnica para gestión sostenible del agua",
-    icon: "📚",
-  },
-];
+import ScrollReveal from "@/components/ScrollReveal.astro";
 
-const beneficios = [
-  {
-    numero: "75%",
-    texto: "de familias sin acceso a agua segura",
-  },
-  {
-    numero: "40%",
-    texto: "de ahorro en costos de implementación",
-  },
-  {
-    numero: "200+",
-    texto: "comunidades potenciales",
-  },
-  {
-    numero: "24/7",
-    texto: "soporte técnico continuo",
-  },
-];
+import TypedText from "@/components/ui/Tipeador";
 
 const testimonios = [
   {
@@ -99,7 +58,12 @@ const stats = [
           class="flex flex-col lg:flex-row items-center justify-between gap-8 py-6 flex-1 mb-20"
         >
           <!-- Lado izquierdo - Texto -->
-          <div class="flex-1 space-y-2 text-center lg:text-left">
+          <ScrollReveal
+            class="flex-1 space-y-2 text-center lg:text-left"
+            delay={100}
+            animation="fade-up"
+            intensity="high"
+          >
             <h1
               class="text-4xl md:text-5xl lg:text-6xl text-gray-600 font-bold leading-tight"
             >
@@ -107,10 +71,12 @@ const stats = [
               <span class="text-gray-600 block">Comunidades</span>
               <span class="text-cyan-400 block">Altoandinas</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl">
+
+            <p class="text-lg md:text-xl text-gray-500 max-w-2xl">
               Soluciones hídricas sostenibles con tecnología de punta.
               Transformamos el acceso al agua en tu comunidad.
             </p>
+
             <div
               class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8"
             >
@@ -129,7 +95,7 @@ const stats = [
 
               <!-- Botón secundario -->
             </div>
-          </div>
+          </ScrollReveal>
 
           <!-- Lado derecho - Animación -->
           <div class="flex-1 max-w-xl">
@@ -148,41 +114,52 @@ const stats = [
     <div
       class="w-full bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 mt-20"
     >
+      <!-- //para la animacion de revelado es esto reveal opacity-0 translate-y-10
+      transition-all duration-700 ease-out -->
       <div class="max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-white py-20
-         h-[7rem] md:h-[8.5rem]
+        <div class="text-center reveal mb-8 sm:mb-12">
+          <ScrollReveal delay={100} animation="fade-up" intensity="high">
+            <h2
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white py-10 sm:py-14 lg:py-20
+         h-auto min-h-[5rem] sm:min-h-[6rem] md:min-h-[7rem] lg:min-h-[8.5rem]
          flex items-center justify-center text-center overflow-hidden"
-          >
-            <span class="block leading-tight whitespace-pre-line"
-              >Muchas comunidades no cuentan con agua segura durante todo el año</span
             >
-          </h2>
-          <p
-            class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
-          >
-            Más de <span class="font-bold text-2xl text-cyan-300"
-              >350 mil familias</span
-            > dependen de lluvias estacionales y manantes no aprovechados, generando
-            enfermedades, pérdidas ganaderas y baja productividad.
-          </p>
+              <span class="block leading-tight whitespace-pre-line"
+                >Muchas comunidades no cuentan con agua segura durante todo el
+                año</span
+              >
+            </h2>
+          </ScrollReveal>
+
+          <ScrollReveal delay={200} animation="fade-up" intensity="medium">
+            <p
+              class="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0"
+            >
+              Más de <span class="font-bold text-xl sm:text-2xl text-cyan-300"
+                >350 mil familias</span
+              > dependen de lluvias estacionales y manantes no aprovechados, generando
+              enfermedades, pérdidas ganaderas y baja productividad.
+            </p>
+          </ScrollReveal>
         </div>
 
-        <!-- Estadísticas con animación -->
-        <AnimatedStats stats={stats} client:visible />
+        <ScrollReveal delay={200} animation="fade-up" intensity="high">
+          <!-- Estadísticas con animación -->
+          <AnimatedStats stats={stats} client:visible />
+        </ScrollReveal>
       </div>
     </div>
+    <!-- Fin Sección de Problema/Estadísticas -->
 
     <!-- Sección de Servicios -->
-    <div class="w-full py-20 bg-gray-50">
+    <div class="w-full py-12 sm:py-16 lg:py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- TEXTO MEJORADO -->
-        <div class="text-center my-20 relative">
+        <div class="text-center my-10 sm:my-14 lg:my-20 relative">
           <!-- Decoración superior -->
 
           <h2
-            class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
           >
             Sembrar agua
             <span class="relative inline-block">
@@ -216,17 +193,17 @@ const stats = [
           </h2>
 
           <p
-            class="text-lg md:text-xl text-gray-600 mt-8 mx-auto max-w-3xl leading-relaxed"
+            class="text-base sm:text-lg md:text-xl text-gray-600 mt-6 sm:mt-8 mx-auto max-w-7xl leading-relaxed px-2 sm:px-0"
           >
             En <span
-              class="font-bold text-gray-900 bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent"
+              class="font-bold bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent"
               >HYDROVISION</span
             > ofrecemos una solución integral que combina <span
               class="font-semibold text-gray-800">tecnología moderna</span
             > + <span class="font-semibold text-gray-800"
               >conocimiento rural</span
             >
-            <span class="block mt-2 text-gray-500">
+            <span class="block mt-2 text-gray-800">
               para asegurar agua sostenible a bajo costo
             </span>
           </p>
@@ -270,33 +247,41 @@ const stats = [
     </div>
 
     <!-- Sección de Testimonios -->
-    <div class="w-full py-24 bg-gradient-to-b from-white to-gray-50">
+    <div
+      class="w-full py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header mejorado -->
-        <div class="text-center mb-16">
-          <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="text-center mb-10 sm:mb-12 lg:mb-16">
+          <div
+            class="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6"
+          >
             <span
-              class="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500"
+              class="h-px w-8 sm:w-12 bg-gradient-to-r from-transparent to-cyan-500"
             ></span>
             <span
-              class="text-cyan-600 font-medium tracking-widest text-sm uppercase"
+              class="text-cyan-600 font-medium tracking-widest text-xs sm:text-sm uppercase"
               >Testimonios</span
             >
             <span
-              class="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500"
+              class="h-px w-8 sm:w-12 bg-gradient-to-l from-transparent to-cyan-500"
             ></span>
           </div>
 
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6"
+          >
             Lo Que Dicen
             <span class="relative inline-block">
               <span class="relative z-10">Nuestros Clientes</span>
               <span
-                class="absolute bottom-2 left-0 w-full h-3 bg-cyan-200/50 -z-0"
+                class="absolute bottom-1 sm:bottom-2 left-0 w-full h-2 sm:h-3 bg-cyan-200/50 -z-0"
               ></span>
             </span>
           </h2>
-          <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">
+          <p
+            class="text-base sm:text-lg md:text-xl text-gray-500 max-w-2xl mx-auto px-2 sm:px-0"
+          >
             Historias reales de comunidades que han transformado su acceso al
             agua
           </p>
@@ -307,27 +292,45 @@ const stats = [
     </div>
 
     <!-- Sección CTA Final -->
-    <div class="w-full bg-gradient-to-r from-cyan-600 to-blue-700 py-16">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-          ¿Listo para Transformar tu Comunidad?
-        </h2>
-        <p class="text-xl text-gray-100 mb-8">
-          Solicita un diagnóstico gratuito y descubre cómo podemos ayudarte
-        </p>
+    <div
+      class="w-full bg-gradient-to-r from-cyan-600 to-blue-700 py-10 sm:py-12 lg:py-16"
+    >
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-4">
+        <span
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[4rem] flex items-center justify-center"
+        >
+          <TypedText
+            client:visible
+            strings={["¿Listo para transformar tu comunidad?"]}
+            typeSpeed={60}
+            backSpeed={40}
+            backDelay={1500}
+            loop={true}
+            showCursor={false}
+          />
+        </span>
+        <ScrollReveal delay={100} animation="fade-up" intensity="medium">
+          <p class="text-base sm:text-lg lg:text-xl text-gray-100 mb-6 sm:mb-8">
+            Solicita un diagnóstico gratuito y descubre cómo podemos ayudarte
+          </p>
+        </ScrollReveal>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/contactanos"
-            class="bg-white hover:bg-gray-100 text-cyan-700 font-bold px-8 py-4 rounded-lg shadow-lg transform transition hover:scale-105"
-          >
-            Contactar Ahora
-          </a>
-          <a
-            href="/nosotros"
-            class="bg-transparent hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-lg border-2 border-white transition"
-          >
-            Conocer Más
-          </a>
+          <ScrollReveal delay={200} animation="fade-left" intensity="medium">
+            <a
+              href="/contactanos"
+              class="bg-white hover:bg-gray-100 text-cyan-700 font-bold px-8 py-4 rounded-lg shadow-lg transform transition hover:scale-105"
+            >
+              Contactar Ahora
+            </a>
+          </ScrollReveal>
+          <ScrollReveal delay={300} animation="fade-right" intensity="medium">
+            <a
+              href="/nosotros"
+              class="bg-transparent hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-lg border-2 border-white transition"
+            >
+              Conocer Más
+            </a>
+          </ScrollReveal>
         </div>
       </div>
     </div>
@@ -335,7 +338,3 @@ const stats = [
     <!-- Footer -->
   </main>
 </Layout>
-
-<script type="module">
-  import "@lottiefiles/lottie-player";
-</script>

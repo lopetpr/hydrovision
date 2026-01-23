@@ -19,16 +19,39 @@ const isActive = (href: string) => {
 ---
 
 <nav class="w-full bg-[#109BCA] border-b border-gray-100">
-  <div class="max-w-7xl mx-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="py-4">
-      <div class="flex flex-row justify-center gap-6">
+      <!-- Botón hamburguesa para móvil -->
+      <div class="flex md:hidden justify-center">
+        <button
+          id="menu-toggle"
+          class="text-white p-2 focus:outline-none"
+          aria-label="Abrir menú"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menú desktop -->
+      <div class="hidden md:flex flex-row justify-center gap-4 lg:gap-6">
         {
           links.map(({ href, text }) => (
             <div>
               <a
                 href={href}
                 data-astro-prefetch="hover"
-                class="text-white hover:text-gray-900 px-3 py-2 text-sm ansition-colors font-light text-[14px]"
+                class="text-white hover:text-gray-900 px-3 py-2 text-sm transition-colors font-light text-[14px]"
               >
                 {text}
               </a>
@@ -39,6 +62,47 @@ const isActive = (href: string) => {
           ))
         }
       </div>
+
+      <!-- Menú móvil -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden flex-col items-center gap-4 pt-4"
+      >
+        {
+          links.map(({ href, text }) => (
+            <a
+              href={href}
+              data-astro-prefetch="hover"
+              class:list={[
+                "text-white hover:text-gray-200 px-3 py-2 text-base transition-colors font-light",
+                currentPath === href && "border-b-2 border-[#CEFBFF]",
+              ]}
+            >
+              {text}
+            </a>
+          ))
+        }
+      </div>
     </div>
   </div>
 </nav>
+
+<script>
+  function setupMobileMenu() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("flex");
+      });
+    }
+  }
+
+  // Ejecutar en la carga inicial
+  setupMobileMenu();
+
+  // Ejecutar después de las transiciones de Astro
+  document.addEventListener("astro:after-swap", setupMobileMenu);
+</script>

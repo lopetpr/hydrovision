@@ -60,7 +60,7 @@ const cardVariants = {
 export default function ServiceCards() {
   return (
     <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -76,7 +76,7 @@ export default function ServiceCards() {
               y: -8,
               transition: { duration: 0.3, ease: "easeOut" },
             }}
-            className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 border border-gray-100 overflow-hidden"
+            className="group relative bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-sm hover:shadow-xl transition-shadow duration-500 border border-gray-100 overflow-hidden"
           >
             {/* Gradient line on top */}
             <div
@@ -85,27 +85,30 @@ export default function ServiceCards() {
 
             {/* Icon container */}
             <motion.div
-              className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 shadow-lg`}
+              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 sm:mb-6 shadow-lg`}
               whileHover={{
                 scale: 1.1,
                 rotate: 5,
               }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
+              <Icon
+                className="w-6 h-6 sm:w-7 sm:h-7 text-white"
+                strokeWidth={1.5}
+              />
             </motion.div>
 
             {/* Content */}
-            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-gray-800 transition-colors">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-gray-800 transition-colors">
               {service.title}
             </h3>
-            <p className="text-gray-500 text-sm leading-relaxed">
+            <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
               {service.description}
             </p>
 
             {/* Subtle arrow indicator */}
             <motion.div
-              className="mt-14 flex items-center text-sm font-medium text-gray-400 group-hover:text-cyan-600 transition-colors"
+              className="mt-8 sm:mt-14 flex items-center text-sm font-medium text-gray-400 group-hover:text-cyan-600 transition-colors"
               initial={{ x: 0 }}
               whileHover={{ x: 4 }}
             >
