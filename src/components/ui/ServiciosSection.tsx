@@ -236,9 +236,9 @@ export default function ServiciosSection() {
               </p>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-400 leading-tight">
-              Soluciones integrales para el{" "}
-              <span className="text-indigo-500">acceso al agua</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#02B6D4] leading-tight">
+              Soluciones integrales para{" "}
+              <span className="text-gray-400">el acceso al agua</span>
             </h2>
           </div>
         </motion.div>

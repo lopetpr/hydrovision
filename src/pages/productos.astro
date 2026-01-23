@@ -1,35 +1,196 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import Wave from "@/components/ui/contenido/Wave";
+
+import WaveBottom from "@/components/ui/contenido/Wave-buttom";
+
+import ScrollReveal from "@/components/ScrollReveal.astro";
+
+const filas = [
+  {
+    otro: "Solo materiales",
+    hydrovision: "Solución integral",
+  },
+  {
+    otro: "Sin estudio técnico",
+    hydrovision: "Diagnóstico con drones",
+  },
+  {
+    otro: "Proyectos lentos",
+    hydrovision: "Instalación en menos de 7 días",
+  },
+  {
+    otro: "Costos altos",
+    hydrovision: "Hasta 40% menos",
+  },
+];
+
+const opcionesKit1 = [
+  {
+    capacidad: "900 Lt",
+    descripcion: "Pileta a 50m de distancia",
+    precio: "S/. 1,600",
+  },
+  {
+    capacidad: "1,200 Lt",
+    descripcion: "Pileta a 100m de distancia",
+    precio: "S/. 1,950",
+    destacado: true,
+  },
+  {
+    capacidad: "2,500 Lt",
+    descripcion: "Pileta a 200m de distancia",
+    precio: "S/. 4,200",
+  },
+];
+const opcionesKit2 = [
+  {
+    capacidad: "10 m³",
+    descripcion: "Geomembrana espesor 1.0mm",
+    precio: "S/. 2,500",
+  },
+  {
+    capacidad: "20 m³",
+    descripcion: "Geomembrana espesor 1.0mm",
+    precio: "S/. 3,400",
+  },
+  {
+    capacidad: "40 m³",
+    descripcion: "Geomembrana espesor 1.5mm",
+    precio: "S/. 5,000",
+    destacado: true,
+  },
+  {
+    capacidad: "60 m³",
+    descripcion: "Geomembrana espesor 1.5mm",
+    precio: "S/. 8,800",
+  },
+];
+
+const listKit2 = [
+  {
+    nombre: "Geomembrana HDPE 1.00mm/1.5mm",
+  },
+  {
+    nombre: "Malla galvanizada electrosoldada",
+  },
+  {
+    nombre: "04 und tubo acero reforzado",
+  },
+  {
+    nombre: "Pernos sujetadores de geomembrana",
+  },
+  {
+    nombre: "Candado de armado de estructura metálica",
+  },
+  {
+    nombre: "Manguera corrugada y abrazadera Ubol",
+  },
+  {
+    nombre: 'Brida de descarga de 2" - 3"',
+  },
+  {
+    nombre: 'Codos de 90° de 2" - 3"',
+  },
+  {
+    nombre: "Transporte, instalación y prueba in situ",
+  },
+];
+
+const listKit1 = [
+  {
+    nombre: 'Línea de conducción tubería HDPE presión C 10 de 1" (100m)',
+  },
+  {
+    nombre: '05 und codos de 1" y 05 und de 1" uniones',
+  },
+  {
+    nombre: 'Válvula de paso de 1"',
+  },
+  {
+    nombre: "Tanque almacenamiento rototanque o Rotoplas",
+  },
+  {
+    nombre: 'Flotador mecánico de 1"',
+  },
+  {
+    nombre: 'Salida inferior con llave y filtro de 1"',
+  },
+  {
+    nombre: 'Salida de rebose de 1" superior',
+  },
+  {
+    nombre: "Tubería para pileta y grifo de bronce",
+  },
+  {
+    nombre: "Accesorios varios",
+  },
+];
 ---
 
 <Layout title="Productos">
   <main class="w-full bg-white">
     <!-- Hero Minimalista -->
-    <section class="relative py-16 sm:py-20 lg:py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative py-16 sm:py-20 lg:py-32 overflow-hidden">
+      <!-- Wave como fondo -->
+      <div class="absolute inset-x-0 bottom-0 z-0 w-full">
+        <ScrollReveal
+          delay={200}
+          animation="fade-left"
+          intensity="medium"
+          client:visible
+        >
+          <Wave client:visible />
+        </ScrollReveal>
+      </div>
+      <!-- Contenido -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl">
-          <p
-            class="text-cyan-600 font-medium mb-4 tracking-wide uppercase text-xs sm:text-sm"
+          <ScrollReveal
+            delay={200}
+            animation="fade-left"
+            intensity="medium"
+            client:visible
           >
-            Nuestros Kits
-          </p>
-          <h1
-            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 leading-tight mb-6"
+            <p
+              class="text-white font-medium mb-4 tracking-wide uppercase text-sm sm:text-sm bg-[#02B6D4] inline-block px-3 py-1 rounded-full"
+            >
+              Nuestros Kits
+            </p>
+          </ScrollReveal>
+          <ScrollReveal
+            delay={200}
+            animation="fade-up"
+            intensity="medium"
+            client:visible
           >
-            Soluciones completas,
-            <span class="text-gray-400">listas para instalar</span>
-          </h1>
-          <p class="text-lg sm:text-xl text-gray-500 max-w-2xl">
-            Kits diseñados para comunidades altoandinas. Todo incluido:
-            materiales, instalación y capacitación.
-          </p>
+            <h1
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#02B6D4] leading-tight mb-6"
+            >
+              Soluciones completas,
+              <span class="text-gray-400">listas para instalar</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-gray-500 max-w-2xl">
+              Kits diseñados para comunidades altoandinas. Todo incluido:
+              materiales, instalación y capacitación.
+            </p>
+          </ScrollReveal>
         </div>
       </div>
     </section>
 
     <!-- Línea divisoria -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="h-px bg-gray-100"></div>
+    <div class="w-full bg-white">
+      <ScrollReveal
+        delay={200}
+        animation="fade-right"
+        intensity="medium"
+        client:visible
+      >
+        <WaveBottom client:visible />
+      </ScrollReveal>
     </div>
 
     <!-- Kit 1: Consumo Humano -->
@@ -38,74 +199,78 @@ import Layout from "../layouts/Layout.astro";
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-20">
           <!-- Info -->
           <div class="lg:col-span-5">
-            <span
-              class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-gray-100 leading-none select-none"
-              >01</span
+            <ScrollReveal
+              delay={200}
+              animation="fade-left"
+              intensity="medium"
+              client:visible
             >
+              <span
+                class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#02B6D4] leading-none select-none"
+                >01</span
+              >
+            </ScrollReveal>
 
             <div class="mt-4 sm:mt-6">
               <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <span class="text-2xl sm:text-3xl">💧</span>
-                <h2
-                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900"
+                <ScrollReveal
+                  delay={200}
+                  animation="fade-up"
+                  intensity="medium"
+                  client:visible
                 >
-                  Kit para Consumo Humano
-                </h2>
+                  <h2
+                    class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400"
+                  >
+                    Kit para Consumo Humano
+                  </h2>
+                </ScrollReveal>
               </div>
-              <p
-                class="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 lg:mb-10"
+              <ScrollReveal
+                delay={200}
+                animation="fade-up"
+                intensity="medium"
+                client:visible
               >
-                Sistema completo de agua potable con tanque de almacenamiento y
-                pileta
-              </p>
+                <p
+                  class="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 lg:mb-10"
+                >
+                  Sistema completo de agua potable con tanque de almacenamiento
+                  y pileta
+                </p>
+              </ScrollReveal>
             </div>
 
             <!-- Componentes -->
             <div class="space-y-4 mb-12">
-              <p
-                class="text-xs font-bold text-gray-400 uppercase tracking-wider"
+              <ScrollReveal
+                delay={200}
+                animation="fade-up"
+                intensity="medium"
+                client:visible
               >
-                El kit incluye
-              </p>
+                <p
+                  class="text-xs font-bold text-gray-400 uppercase tracking-wider"
+                >
+                  El kit incluye
+                </p>
+              </ScrollReveal>
               <ul class="space-y-3 text-gray-600">
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span
-                    >Línea de conducción tubería HDPE presión C 10 de 1" (100m)</span
-                  >
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>05 und codos de 1" y 05 und de 1" uniones</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Válvula de paso de 1"</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Tanque almacenamiento rototanque o Rotoplas</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Flotador mecánico de 1"</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Salida inferior con llave y filtro de 1"</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Salida de rebose de 1" superior</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Tubería para pileta y grifo de bronce</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-cyan-500 mt-1">›</span>
-                  <span>Accesorios varios</span>
-                </li>
+                {
+                  listKit1.map((item, index) => (
+                    <ScrollReveal
+                      delay={100 + index * 100}
+                      animation="fade-up"
+                      intensity="medium"
+                      client:visible
+                    >
+                      <li class="flex items-start gap-3">
+                        <span class="text-cyan-500 mt-1">›</span>
+                        <span>{item.nombre}</span>
+                      </li>
+                    </ScrollReveal>
+                  ))
+                }
               </ul>
             </div>
 
@@ -139,300 +304,336 @@ import Layout from "../layouts/Layout.astro";
               </p>
 
               <div class="space-y-6">
-                <!-- Opción 1 -->
-                <div
-                  class="group p-6 border border-gray-100 rounded-2xl hover:border-cyan-200 hover:bg-cyan-50/30 transition-all duration-300"
-                >
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 900 Lt
-                      </h3>
-                      <p class="text-gray-500">Pileta a 50m de distancia</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 1,600</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Opción 2 -->
-                <div
-                  class="group p-6 border border-cyan-200 bg-cyan-50/50 rounded-2xl relative"
-                >
-                  <div class="absolute -top-3 left-6">
-                    <span
-                      class="px-3 py-1 bg-cyan-500 text-white text-xs font-bold rounded-full"
-                      >Más popular</span
+                {
+                  opcionesKit1.map((opcion, index) => (
+                    <ScrollReveal
+                      delay={100 + index * 100}
+                      animation="fade-up"
+                      intensity="medium"
+                      client:visible
                     >
-                  </div>
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 1,200 Lt
-                      </h3>
-                      <p class="text-gray-500">Pileta a 100m de distancia</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 1,950</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Opción 3 -->
-                <div
-                  class="group p-6 border border-gray-100 rounded-2xl hover:border-cyan-200 hover:bg-cyan-50/30 transition-all duration-300"
+                      <div class="group p-6 border border-gray-100 rounded-2xl hover:border-cyan-200 hover:bg-cyan-50/30 transition-all duration-300">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div>
+                            <h3 class="text-xl font-bold text-[#02B6D4] mb-1">
+                              Capacidad {opcion.capacidad}
+                            </h3>
+                            <p class="text-gray-500">{opcion.descripcion}</p>
+                          </div>
+                          <div class="text-right">
+                            <p class="text-3xl font-bold text-gray-400">
+                              {opcion.precio}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  ))
+                }
+                <!-- Imagen placeholder -->
+                <ScrollReveal
+                  delay={300}
+                  animation="fade-up"
+                  intensity="medium"
+                  client:visible
                 >
                   <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    class="mt-12 aspect-video rounded-2xl bg-gray-100 overflow-hidden"
                   >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 2,500 Lt
-                      </h3>
-                      <p class="text-gray-500">Pileta a 200m de distancia</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 4,200</p>
+                    <img
+                      src="/productos/ki1.jpg"
+                      alt="Kit para consumo humano"
+                      class="w-full h-full object-cover"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <div
+                      class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-50"
+                    >
+                      <div class="text-center">
+                        <span class="text-6xl">💧</span>
+                        <p class="text-gray-400 mt-4 text-sm">Imagen del kit</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <!-- Imagen placeholder -->
-              <div
-                class="mt-12 aspect-video rounded-2xl bg-gray-100 overflow-hidden"
-              >
-                <img
-                  src="/productos/kit-consumo-humano.jpg"
-                  alt="Kit para consumo humano"
-                  class="w-full h-full object-cover"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <div
-                  class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-cyan-50 to-blue-50"
-                >
-                  <div class="text-center">
-                    <span class="text-6xl">💧</span>
-                    <p class="text-gray-400 mt-4 text-sm">Imagen del kit</p>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Línea divisoria -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"
-      >
-      </div>
-    </div>
-
-    <!-- Kit 2: Geotanque para Animales -->
-    <section class="py-12 sm:py-16 lg:py-32">
+      <!-- Línea divisoria -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-20">
-          <!-- Precios (orden invertido en desktop) -->
-          <div class="lg:col-span-7 lg:order-1">
-            <div class="sticky top-8">
-              <p
-                class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-8"
-              >
-                Opciones disponibles
-              </p>
+        <div
+          class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"
+        >
+        </div>
+      </div>
 
-              <div class="space-y-6">
-                <!-- Opción 1 -->
-                <div
-                  class="group p-6 border border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300"
+      <!-- Kit 2: Geotanque para Animales -->
+      <section class="py-12 sm:py-16 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-20"
+          >
+            <!-- Precios (orden invertido en desktop) -->
+            <div class="lg:col-span-7 lg:order-1">
+              <div class="sticky top-8">
+                <p
+                  class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-8"
                 >
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 10 m³
-                      </h3>
-                      <p class="text-gray-500">Geomembrana espesor 1.5mm</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 2,900</p>
-                    </div>
-                  </div>
+                  Opciones disponibles
+                </p>
+
+                <div class="space-y-6">
+                  {
+                    opcionesKit2.map((opcion, index) => (
+                      <ScrollReveal
+                        delay={100 + index * 100}
+                        animation="fade-up"
+                        intensity="medium"
+                        client:visible
+                      >
+                        <div class="group p-6 border border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300">
+                          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                              <h3 class="text-xl font-bold text-[#02B6D4] mb-1">
+                                Capacidad {opcion.capacidad}
+                              </h3>
+                              <p class="text-gray-500">{opcion.descripcion}</p>
+                            </div>
+                            <div class="text-right">
+                              <p class="text-3xl font-bold text-gray-400">
+                                {opcion.precio}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    ))
+                  }
                 </div>
 
-                <!-- Opción 2 -->
-                <div
-                  class="group p-6 border border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300"
+                <!-- Imagen placeholder -->
+                <ScrollReveal
+                  delay={300}
+                  animation="fade-up"
+                  intensity="medium"
+                  client:visible
                 >
                   <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                    class="mt-12 aspect-video rounded-2xl bg-gray-100 overflow-hidden"
                   >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 20 m³
-                      </h3>
-                      <p class="text-gray-500">Geomembrana espesor 1.5mm</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 3,900</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Opción 3 -->
-                <div
-                  class="group p-6 border border-emerald-200 bg-emerald-50/50 rounded-2xl relative"
-                >
-                  <div class="absolute -top-3 left-6">
-                    <span
-                      class="px-3 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full"
-                      >Recomendado</span
+                    <img
+                      src="/productos/ki2.jpg"
+                      alt="Kit geotanque para animales"
+                      class="w-full h-full object-cover"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    />
+                    <div
+                      class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50"
                     >
-                  </div>
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 40 m³
-                      </h3>
-                      <p class="text-gray-500">Geomembrana espesor 1.5mm</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 5,600</p>
                     </div>
                   </div>
-                </div>
-
-                <!-- Opción 4 -->
-                <div
-                  class="group p-6 border border-gray-100 rounded-2xl hover:border-emerald-200 hover:bg-emerald-50/30 transition-all duration-300"
-                >
-                  <div
-                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                  >
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 mb-1">
-                        Capacidad 60 m³
-                      </h3>
-                      <p class="text-gray-500">Geomembrana espesor 1.5mm</p>
-                    </div>
-                    <div class="text-right">
-                      <p class="text-3xl font-bold text-gray-900">S/. 9,200</p>
-                    </div>
-                  </div>
-                </div>
+                </ScrollReveal>
               </div>
+            </div>
 
-              <!-- Imagen placeholder -->
-              <div
-                class="mt-12 aspect-video rounded-2xl bg-gray-100 overflow-hidden"
+            <!-- Info -->
+            <div class="lg:col-span-5 lg:order-2">
+              <ScrollReveal
+                delay={200}
+                animation="fade-right"
+                intensity="medium"
+                client:visible
               >
-                <img
-                  src="/productos/kit-geotanque.jpg"
-                  alt="Kit geotanque para animales"
-                  class="w-full h-full object-cover"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <div
-                  class="hidden w-full h-full items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50"
+                <span
+                  class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#02B6D4] leading-none select-none"
+                  >02</span
                 >
-                  <div class="text-center">
-                    <span class="text-6xl">🐄</span>
-                    <p class="text-gray-400 mt-4 text-sm">Imagen del kit</p>
-                  </div>
+              </ScrollReveal>
+
+              <div class="mt-4 sm:mt-6">
+                <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <ScrollReveal
+                    delay={200}
+                    animation="fade-up"
+                    intensity="medium"
+                    client:visible
+                  >
+                    <h2
+                      class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400"
+                    >
+                      Kit Geotanque para Animales
+                    </h2>
+                  </ScrollReveal>
                 </div>
+                <ScrollReveal
+                  delay={200}
+                  animation="fade-up"
+                  intensity="medium"
+                  client:visible
+                >
+                  <p
+                    class="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 lg:mb-10"
+                  >
+                    Sistema de almacenamiento con geomembrana para abrevadero de
+                    ganado
+                  </p>
+                  <ScrollReveal
+                    delay={200}
+                    animation="fade-right"
+                    intensity="medium"
+                    client:visible
+                  />
+
+                  <!-- Componentes -->
+                  <div class="space-y-4 mb-12">
+                    <ScrollReveal
+                      delay={200}
+                      animation="fade-up"
+                      intensity="medium"
+                      client:visible
+                    >
+                      <p
+                        class="text-xs font-bold text-gray-400 uppercase tracking-wider"
+                      >
+                        El kit incluye
+                      </p>
+                    </ScrollReveal>
+                    <ul class="space-y-3 text-gray-600">
+                      {
+                        listKit2.map((item, index) => (
+                          <ScrollReveal
+                            delay={100 + index * 100}
+                            animation="fade-right"
+                            intensity="medium"
+                            client:visible
+                          >
+                            <li class="flex items-start gap-3">
+                              <span class="text-emerald-500 mt-1">›</span>
+                              <span>{item.nombre}</span>
+                            </li>
+                          </ScrollReveal>
+                        ))
+                      }
+                    </ul>
+                  </div>
+                  <a
+                    href="/contactanos"
+                    class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+                  >
+                    <span>Solicitar este kit</span>
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </ScrollReveal>
               </div>
             </div>
           </div>
 
-          <!-- Info -->
-          <div class="lg:col-span-5 lg:order-2">
-            <span
-              class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-gray-100 leading-none select-none"
-              >02</span
-            >
-
-            <div class="mt-4 sm:mt-6">
-              <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <span class="text-2xl sm:text-3xl">🐄</span>
-                <h2
-                  class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900"
+          <!-- Sección de Diferenciación -->
+          <section class="py-16 sm:py-20 lg:py-32 bg-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              <!-- Header -->
+              <div class="text-center mb-12 sm:mb-16 lg:mb-20">
+                <p
+                  class="text-white font-medium mb-4 tracking-wide uppercase text-xs sm:text-sm bg-[#02B6D4] inline-block px-5 py-2 rounded-full"
                 >
-                  Kit Geotanque para Animales
+                  La diferencia
+                </p>
+                <h2
+                  class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#02B6D4]"
+                >
+                  ¿Por qué elegir <span class="text-gray-400">HYDROVISION</span
+                  >?
                 </h2>
               </div>
-              <p
-                class="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8 lg:mb-10"
-              >
-                Sistema de almacenamiento con geomembrana para abrevadero de
-                ganado
-              </p>
-            </div>
 
-            <!-- Componentes -->
-            <div class="space-y-4 mb-12">
-              <p
-                class="text-xs font-bold text-gray-400 uppercase tracking-wider"
-              >
-                El kit incluye
-              </p>
-              <ul class="space-y-3 text-gray-600">
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Geomembrana HDPE 1.00mm/1.5mm</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Malla galvanizada electrosoldada</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>04 und tubo acero reforzado</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Pernos sujetadores de geomembrana</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Candado de armado de estructura metálica</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Manguera corrugada y abrazadera Ubol</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Brida de descarga de 2" - 3"</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Codos de 90° de 2" - 3"</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <span class="text-emerald-500 mt-1">›</span>
-                  <span>Transporte, instalación y prueba in situ</span>
-                </li>
-              </ul>
-            </div>
+              <!-- Tabla comparativa minimalista -->
+              <div class="overflow-hidden">
+                <!-- Headers -->
+                <div class="grid grid-cols-2 gap-4 sm:gap-8 mb-8 min-w-[300px]">
+                  <div class="text-center">
+                    <span
+                      class="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider"
+                      >Otros</span
+                    >
+                  </div>
+                  <div class="text-center">
+                    <span
+                      class="text-xs sm:text-sm font-bold text-cyan-600 uppercase tracking-wider"
+                      >HYDROVISION</span
+                    >
+                  </div>
+                </div>
 
+                <!-- Filas -->
+                <div class="space-y-4 min-w-[300px]">
+                  <!-- Fila 1 -->
+
+                  {
+                    filas.map((fila, index) => (
+                      <ScrollReveal
+                        delay={100 + index * 100}
+                        animation="fade-up"
+                        intensity="medium"
+                        client:visible
+                      >
+                        <div class="grid grid-cols-2 gap-4 sm:gap-8">
+                          <div class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-gray-100">
+                            <span class="text-red-600">✗</span>
+                            <span class="text-red-500 text-center text-xs sm:text-base">
+                              {fila.otro}
+                            </span>
+                          </div>
+                          <div class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-green-300 bg-green-50/30 rounded-lg">
+                            <span class="text-green-600 font-bold">✓</span>
+                            <span class="text-green-500 font-semibold text-center text-xs sm:text-base">
+                              {fila.hydrovision}
+                            </span>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- CTA Final Minimalista -->
+        <section class="py-16 sm:py-20 lg:py-24 bg-gray-50">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4"
+            >
+              ¿Necesitas un kit personalizado?
+            </h2>
+            <p
+              class="text-base sm:text-lg lg:text-xl text-gray-500 mb-8 sm:mb-10"
+            >
+              Evaluamos tu proyecto y diseñamos la solución perfecta para tu
+              comunidad
+            </p>
             <a
               href="/contactanos"
-              class="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors"
+              class="inline-flex items-center gap-2 sm:gap-3 bg-gray-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-800 transition-colors text-sm sm:text-base"
             >
-              <span>Solicitar este kit</span>
+              <span>Contactar a un experto</span>
               <svg
-                class="w-4 h-4"
+                class="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -445,206 +646,8 @@ import Layout from "../layouts/Layout.astro";
               </svg>
             </a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sección de Diferenciación -->
-    <section class="py-16 sm:py-20 lg:py-32 bg-white">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="text-center mb-12 sm:mb-16 lg:mb-20">
-          <p
-            class="text-cyan-600 font-medium mb-4 tracking-wide uppercase text-xs sm:text-sm"
-          >
-            La diferencia
-          </p>
-          <h2
-            class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900"
-          >
-            ¿Por qué elegir <span class="text-gray-400">HYDROVISION</span>?
-          </h2>
-        </div>
-
-        <!-- Tabla comparativa minimalista -->
-        <div class="overflow-x-auto">
-          <!-- Headers -->
-          <div class="grid grid-cols-2 gap-4 sm:gap-8 mb-8 min-w-[300px]">
-            <div class="text-center">
-              <span
-                class="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider"
-                >Otros</span
-              >
-            </div>
-            <div class="text-center">
-              <span
-                class="text-xs sm:text-sm font-bold text-cyan-600 uppercase tracking-wider"
-                >HYDROVISION</span
-              >
-            </div>
-          </div>
-
-          <!-- Filas -->
-          <div class="space-y-4 min-w-[300px]">
-            <!-- Fila 1 -->
-            <div class="grid grid-cols-2 gap-4 sm:gap-8">
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-gray-100"
-              >
-                <span class="text-gray-300">✗</span>
-                <span class="text-gray-400 text-center text-xs sm:text-base"
-                  >Solo materiales</span
-                >
-              </div>
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-cyan-100 bg-cyan-50/30 rounded-lg"
-              >
-                <span class="text-cyan-500">✓</span>
-                <span
-                  class="text-gray-900 font-medium text-center text-xs sm:text-base"
-                  >Solución integral</span
-                >
-              </div>
-            </div>
-
-            <!-- Fila 2 -->
-            <div class="grid grid-cols-2 gap-4 sm:gap-8">
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-gray-100"
-              >
-                <span class="text-gray-300">✗</span>
-                <span class="text-gray-400 text-center text-xs sm:text-base"
-                  >Sin estudio técnico</span
-                >
-              </div>
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-cyan-100 bg-cyan-50/30 rounded-lg"
-              >
-                <span class="text-cyan-500">✓</span>
-                <span
-                  class="text-gray-900 font-medium text-center text-xs sm:text-base"
-                  >Diagnóstico con drones</span
-                >
-              </div>
-            </div>
-
-            <!-- Fila 3 -->
-            <div class="grid grid-cols-2 gap-4 sm:gap-8">
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-gray-100"
-              >
-                <span class="text-gray-300">✗</span>
-                <span class="text-gray-400 text-center text-xs sm:text-base"
-                  >Proyectos lentos</span
-                >
-              </div>
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-cyan-100 bg-cyan-50/30 rounded-lg"
-              >
-                <span class="text-cyan-500">✓</span>
-                <span
-                  class="text-gray-900 font-medium text-center text-xs sm:text-base"
-                  >Instalación en menos de 7 días</span
-                >
-              </div>
-            </div>
-
-            <!-- Fila 4 -->
-            <div class="grid grid-cols-2 gap-4 sm:gap-8">
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-gray-100"
-              >
-                <span class="text-gray-300">✗</span>
-                <span class="text-gray-400 text-center text-xs sm:text-base"
-                  >Costos altos</span
-                >
-              </div>
-              <div
-                class="flex items-center justify-center gap-2 sm:gap-3 py-3 sm:py-5 px-2 sm:px-4 border-b border-cyan-100 bg-cyan-50/30 rounded-lg"
-              >
-                <span class="text-cyan-500">✓</span>
-                <span
-                  class="text-gray-900 font-medium text-center text-xs sm:text-base"
-                  >Hasta 40% menos</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Stats minimalistas -->
-        <div class="mt-16 sm:mt-24 pt-12 sm:pt-16 border-t border-gray-100">
-          <div
-            class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center"
-          >
-            <div>
-              <p
-                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2"
-              >
-                100+
-              </p>
-              <p class="text-gray-400 text-xs sm:text-sm">Proyectos</p>
-            </div>
-            <div>
-              <p
-                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2"
-              >
-                7 días
-              </p>
-              <p class="text-gray-400 text-xs sm:text-sm">Instalación</p>
-            </div>
-            <div>
-              <p
-                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2"
-              >
-                40%
-              </p>
-              <p class="text-gray-400 text-xs sm:text-sm">Ahorro</p>
-            </div>
-            <div>
-              <p
-                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2"
-              >
-                24/7
-              </p>
-              <p class="text-gray-400 text-xs sm:text-sm">Soporte</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Final Minimalista -->
-    <section class="py-16 sm:py-20 lg:py-24 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2
-          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4"
-        >
-          ¿Necesitas un kit personalizado?
-        </h2>
-        <p class="text-base sm:text-lg lg:text-xl text-gray-500 mb-8 sm:mb-10">
-          Evaluamos tu proyecto y diseñamos la solución perfecta para tu
-          comunidad
-        </p>
-        <a
-          href="/contactanos"
-          class="inline-flex items-center gap-2 sm:gap-3 bg-gray-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-gray-800 transition-colors text-sm sm:text-base"
-        >
-          <span>Contactar a un experto</span>
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
-      </div>
+        </section>
+      </section>
     </section>
   </main>
 </Layout>
