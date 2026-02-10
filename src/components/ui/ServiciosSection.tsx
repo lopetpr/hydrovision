@@ -4,6 +4,12 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 
 import AnimatedStats from "./AnimatedStats";
 
+export interface ServiceImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
 interface Service {
   id: number;
   number: string;
@@ -12,58 +18,76 @@ interface Service {
   subtitle: string;
   features: string[];
   price: string;
-  image: string;
+  image: ServiceImage;
 }
 
-const services: Service[] = [
-  {
-    id: 1,
-    number: "01",
-    emoji: "🛰",
-    title: "Mapeo con dron",
-    subtitle: "Mapeo con fin de zonificación territorial y estudio hídrico",
-    features: [
-      "Levantamiento con dron georreferenciado",
-      "Ortofotos y nube de puntos",
-      "Modelo digital de terreno (MDT)",
-      "Identificación de afloramientos y vasos hídricos",
-      "Modelos 3D de microreservorios",
-    ],
-    price: "Desde S/. 420.00",
-    image: "/servicios/reconocimiento-dron.jpg",
-  },
-  {
-    id: 2,
-    number: "02",
-    emoji: "💧",
-    title: "Captación de agua",
-    subtitle: "Diseño e instalación de sistemas de captación",
-    features: [
-      "Captación con caja HDPE",
-      "Captación con mampostería",
-      "Filtros, válvulas y conducción",
-      "Diseño por gravedad",
-    ],
-    price: "Desde S/. 280.00",
-    image: "/servicios/captacion.jpg",
-  },
-  {
-    id: 3,
-    number: "03",
-    emoji: "🏞",
-    title: "Almacenamiento y distribución",
-    subtitle: "Infraestructura hídrica completa",
-    features: [
-      "Microreservorios",
-      "Tanques de polietileno",
-      "Redes de distribución para personas y ganado",
-    ],
-    price: "Bajo cotización",
-    image: "/servicios/polietileno.jpg",
-  },
-];
+interface ServiciosSectionProps {
+  images: {
+    reconocimientoDron: ServiceImage;
+    captacion: ServiceImage;
+    polietileno: ServiceImage;
+  };
+}
 
-function ServiceItem({ service, index }: { service: Service; index: number }) {
+function getServices(images: ServiciosSectionProps["images"]): Service[] {
+  return [
+    {
+      id: 1,
+      number: "01",
+      emoji: "🛰",
+      title: "Mapeo con dron",
+      subtitle: "Mapeo con fin de zonificación territorial y estudio hídrico",
+      features: [
+        "Levantamiento con dron georreferenciado",
+        "Ortofotos y nube de puntos",
+        "Modelo digital de terreno (MDT)",
+        "Identificación de afloramientos y vasos hídricos",
+        "Modelos 3D de microreservorios",
+      ],
+      price: "Desde S/. 420.00",
+      image: images.reconocimientoDron,
+    },
+    {
+      id: 2,
+      number: "02",
+      emoji: "💧",
+      title: "Captación de agua",
+      subtitle: "Diseño e instalación de sistemas de captación",
+      features: [
+        "Captación con caja HDPE",
+        "Captación con mampostería",
+        "Filtros, válvulas y conducción",
+        "Diseño por gravedad",
+      ],
+      price: "Desde S/. 280.00",
+      image: images.captacion,
+    },
+    {
+      id: 3,
+      number: "03",
+      emoji: "🏞",
+      title: "Almacenamiento y distribución",
+      subtitle: "Infraestructura hídrica completa",
+      features: [
+        "Microreservorios",
+        "Tanques de polietileno",
+        "Redes de distribución para personas y ganado",
+      ],
+      price: "Bajo cotización",
+      image: images.polietileno,
+    },
+  ];
+}
+
+function ServiceItem({
+  service,
+  index,
+  totalServices,
+}: {
+  service: Service;
+  index: number;
+  totalServices: number;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
   const isReversed = index % 2 === 1;
@@ -188,11 +212,15 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
             ) : (
               <>
                 <motion.img
-                  src={service.image}
+                  src={service.image.src}
+                  width={service.image.width}
+                  height={service.image.height}
                   alt={service.title}
                   className="w-full h-full object-cover"
                   animate={{ scale: isHovered ? 1.03 : 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setImageError(true)}
                 />
                 {/* Overlay sutil */}
@@ -204,7 +232,7 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
       </div>
 
       {/* Línea divisoria */}
-      {index < services.length - 1 && (
+      {index < totalServices - 1 && (
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -217,7 +245,9 @@ function ServiceItem({ service, index }: { service: Service; index: number }) {
   );
 }
 
-export default function ServiciosSection() {
+export default function ServiciosSection({ images }: ServiciosSectionProps) {
+  const services = getServices(images);
+
   return (
     <section className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,7 +276,12 @@ export default function ServiciosSection() {
         {/* Lista de servicios */}
         <div>
           {services.map((service, index) => (
-            <ServiceItem key={service.id} service={service} index={index} />
+            <ServiceItem
+              key={service.id}
+              service={service}
+              index={index}
+              totalServices={services.length}
+            />
           ))}
         </div>
       </div>
