@@ -1,43 +1,77 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ServiciosSection from "@/components/ui/ServiciosSection";
-
 import { Icon } from "astro-icon/components";
-
 import ScrollReveal from "@/components/ScrollReveal.astro";
 import { Image, Picture, getImage } from "astro:assets";
 import heroServicios from "@/assets/servicios/servicios-hero.webp";
 
 // Importar imágenes de servicios
-import reconocimientoDronImg from "@/assets/servicios/reconocimiento-dron.jpg";
+import reconocimientoDron from "@/assets/servicios/dron-reconocimiento.webp";
 import captacionImg from "@/assets/servicios/captacion.webp";
 import polietilenoImg from "@/assets/servicios/polietileno.webp";
 
-// Obtener imágenes optimizadas con getImage()
-const reconocimientoDron = await getImage({
-  src: reconocimientoDronImg,
-  format: "webp",
-});
+
 const captacion = await getImage({ src: captacionImg, format: "webp" });
 const polietileno = await getImage({ src: polietilenoImg, format: "webp" });
 
-const serviciosImages = {
-  reconocimientoDron: {
-    src: reconocimientoDron.src,
-    width: reconocimientoDron.attributes.width as number,
-    height: reconocimientoDron.attributes.height as number,
+// Definir servicios
+const services = [
+  {
+    id: 1,
+    number: "01",
+    emoji: "🛰",
+    title: "Mapeo con dron",
+    subtitle: "Mapeo con fin de zonificación territorial y estudio hídrico",
+    features: [
+      "Levantamiento con dron georreferenciado",
+      "Ortofotos y nube de puntos",
+      "Modelo digital de terreno (MDT)",
+      "Identificación de afloramientos y vasos hídricos",
+      "Modelos 3D de microreservorios",
+    ],
+    price: "Desde S/. 420.00",
+    image: {
+      src: reconocimientoDron.src
+    },
   },
-  captacion: {
-    src: captacion.src,
-    width: captacion.attributes.width as number,
-    height: captacion.attributes.height as number,
+  {
+    id: 2,
+    number: "02",
+    emoji: "💧",
+    title: "Captación de agua",
+    subtitle: "Diseño e instalación de sistemas de captación",
+    features: [
+      "Captación con caja HDPE",
+      "Captación con mampostería",
+      "Filtros, válvulas y conducción",
+      "Diseño por gravedad",
+    ],
+    price: "Desde S/. 280.00",
+    image: {
+      src: captacion.src,
+      width: captacion.attributes.width as number,
+      height: captacion.attributes.height as number,
+    },
   },
-  polietileno: {
-    src: polietileno.src,
-    width: polietileno.attributes.width as number,
-    height: polietileno.attributes.height as number,
+  {
+    id: 3,
+    number: "03",
+    emoji: "🏞",
+    title: "Almacenamiento y distribución",
+    subtitle: "Infraestructura hídrica completa",
+    features: [
+      "Microreservorios",
+      "Tanques de polietileno",
+      "Redes de distribución para personas y ganado",
+    ],
+    price: "Bajo cotización",
+    image: {
+      src: polietileno.src,
+      width: polietileno.attributes.width as number,
+      height: polietileno.attributes.height as number,
+    },
   },
-};
+];
 ---
 
 <Layout title="Servicios">
@@ -114,7 +148,121 @@ const serviciosImages = {
   </main>
 
   <!-- Servicios interactivos -->
-  <ServiciosSection images={serviciosImages} client:visible />
+  <section class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header minimalista -->
+      <ScrollReveal delay={100} animation="fade-up" intensity="medium" client:visible>
+        <div class="py-12 sm:py-16 lg:py-32 border-b border-gray-100">
+          <div class="max-w-3xl">
+            <div class="mb-4 sm:mb-6 max-w-40">
+              <p class="text-white font-medium mb-4 tracking-wide uppercase text-xs sm:text-sm bg-[#000000] p-2 rounded-2xl text-center w-full">
+                Lo que hacemos
+              </p>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#02B6D4] leading-tight">
+              Soluciones integrales para{" "}
+              <span class="text-gray-400">el acceso al agua</span>
+            </h2>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      <!-- Lista de servicios -->
+      <div>
+        {services.map((service, index) => {
+          const isReversed = index % 2 === 1;
+          const isLast = index === services.length - 1;
+          
+          return (
+            <article class="group">
+              <ScrollReveal delay={150 * index} animation="fade-up" intensity="medium" client:visible>
+                <div class={`grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-center py-10 sm:py-12 lg:py-24`}>
+                  <!-- Número y contenido -->
+                  <div class={`lg:col-span-5 ${isReversed ? "lg:order-2" : "lg:order-1"}`}>
+                    <!-- Número grande -->
+                    <div class="mb-4 sm:mb-6">
+                      <span class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#02B6D4] select-none leading-none">
+                        {service.number}
+                      </span>
+                    </div>
+
+                    <!-- Emoji y título -->
+                    <div>
+                      <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400">
+                          {service.title}
+                        </h3>
+                      </div>
+
+                      <p class="text-base sm:text-lg text-gray-500 mb-6 sm:mb-8">
+                        {service.subtitle}
+                      </p>
+                    </div>
+
+                    <!-- Features como lista simple -->
+                    <ul class="space-y-3 mb-8">
+                      {service.features.map((feature, idx) => (
+                        <li class="flex items-start gap-3 text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-cyan-700 flex-shrink-0 mt-0.5">
+                            <path d="m9 18 6-6-6-6"/>
+                          </svg>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <!-- Precio y CTA -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                      <div>
+                        <p class="text-sm text-gray-400 mb-1">Inversión</p>
+                        <p class="text-2xl font-bold text-indigo-500">
+                          {service.price}
+                        </p>
+                      </div>
+
+                      <a
+                        href="/contactanos"
+                        class="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors group/link mt-6"
+                      >
+                        <span>Solicitar cotización</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover/link:translate-x-1">
+                          <path d="M5 12h14"/>
+                          <path d="m12 5 7 7-7 7"/>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Imagen -->
+                  <div class={`lg:col-span-7 ${isReversed ? "lg:order-1" : "lg:order-2"}`}>
+                    <div class="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-2xl bg-gray-100">
+                      <img
+                        src={service.image.src}
+                        width={service.image.width}
+                        height={service.image.height}
+                        alt={service.title}
+                        class="w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.03]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <!-- Overlay sutil -->
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Línea divisoria */}
+              {!isLast && (
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent origin-left" />
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
 
   <!-- CTA Final - Consulta de Servicios -->
   <section class="py-20 bg-slate-50 relative">
@@ -214,26 +362,6 @@ const serviciosImages = {
       </div>
 
       <style>
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes draw {
           from {
             stroke-dashoffset: 200;
@@ -243,29 +371,12 @@ const serviciosImages = {
           }
         }
 
-        @keyframes scroll-down {
-          0%,
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          50% {
-            opacity: 0.5;
-            transform: translateY(6px);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-
         .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
+          @apply animate-[slideUp_0.8s_ease-out_forwards];
         }
 
         .animate-slide-up-delay {
-          animation: slide-up 0.8s ease-out 0.2s forwards;
-          opacity: 0;
+          @apply animate-[slideUp_0.8s_ease-out_0.2s_forwards] opacity-0;
         }
 
         .animate-draw {
@@ -274,8 +385,15 @@ const serviciosImages = {
           animation: draw 1.5s ease-out 0.5s forwards;
         }
 
-        .animate-scroll-down {
-          animation: scroll-down 1.5s ease-in-out infinite;
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
       </style>
     </div>
