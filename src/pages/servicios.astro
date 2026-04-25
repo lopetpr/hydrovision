@@ -74,7 +74,10 @@ const services = [
 ];
 ---
 
-<Layout title="Servicios">
+<Layout
+  title="Servicios Hídricos para Comunidades Altoandinas | HYDROVISION"
+  description="Ofrecemos mapeo topográfico con drones, sistemas de captación de agua y soluciones de almacenamiento y distribución para comunidades altoandinas del Perú."
+>
   <main class="w-full overflow-x-hidden">
     <!-- Hero Section -->
 
@@ -86,7 +89,7 @@ const services = [
         class="w-full h-full object-cover object-center absolute inset-0 brightness-75"
         widths={[240, 540, 720, heroServicios.width]}
         sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${heroServicios.width}px`}
-        alt="Una descripción de mi imagen."
+        alt="Servicios hídricos en territorio altoandino"
         quality="low"
         loading="lazy"
       />
@@ -145,7 +148,6 @@ const services = [
         </p>
       </div>
     </section>
-  </main>
 
   <!-- Servicios interactivos -->
   <section class="bg-white">
@@ -216,7 +218,7 @@ const services = [
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                       <div>
                         <p class="text-sm text-gray-400 mb-1">Inversión</p>
-                        <p class="text-2xl font-bold text-indigo-500">
+                        <p class="text-2xl font-bold text-[#02B6D4]">
                           {service.price}
                         </p>
                       </div>
@@ -398,4 +400,5 @@ const services = [
       </style>
     </div>
   </section>
+  </main>
 </Layout>
